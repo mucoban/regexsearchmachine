@@ -1,6 +1,14 @@
 import './App.scss';
+import {useState} from "react";
 
 function App() {
+
+    const [mainTextValue, setMainTextValue] = useState()
+
+    const resetMainText = () => { setMainTextValue('') }
+
+    const copyMainText = () => { navigator.clipboard.writeText(mainTextValue)  }
+
   return (
     <div className="App">
       <div className="header">
@@ -27,12 +35,13 @@ function App() {
             </div>
         </div>
         <div className="text-action-buttons">
-            <button className="tab-btn">Reset Text</button>
-            <button className="tab-btn">Copy Text</button>
+            <button className="tab-btn" onClick={resetMainText}>Reset Text</button>
+            <button className="tab-btn" onClick={copyMainText}>Copy Text</button>
         </div>
       </div>
       <div className="main-text-section">
-        <textarea className="ta" placeholder="paste your text here"></textarea>
+        <textarea value={mainTextValue} onChange={event => setMainTextValue(event.target.value)}
+                  className="ta" placeholder="paste your text here"></textarea>
       </div>
     </div>
   );
