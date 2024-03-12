@@ -4,23 +4,40 @@ import {useState} from "react";
 function App() {
 
     const [mainTextValue, setMainTextValue] = useState()
+    const [searchTerm, setSearchTerm] = useState('')
+    const [searchOCount, setSearchOCount] = useState(0)
 
     const resetMainText = () => { setMainTextValue('') }
 
     const copyMainText = () => { navigator.clipboard.writeText(mainTextValue)  }
 
-  return (
+    const search = (event) => {
+        const term = event.target.value
+        setSearchTerm(term)
+        if (!term) return
+        const results = mainTextValue.matchAll(new RegExp(term, "g"))
+        let i = 0
+        for (let result of results) {
+            console.log(result);
+            i++
+        }
+        setSearchOCount(i)
+    }
+
+    return (
     <div className="App">
       <div className="header">
         <div className="search-sec">
-            <input className="search-itext" type="text" placeholder="Search Term" />
+            <input className="search-itext" type="text" placeholder="Search Term" onChange={search} />
             <button className="i-btn">Search</button>
             <div className="stats">
-                <div className="stats-txt">
-                    <span className="oc-index">1</span>
-                    <span className="oc-count">/ 20</span>
-                    <span className="main">occurences found</span>
-                </div>
+                { !searchTerm.length  ? null :
+                    <div className="stats-txt">
+                        <span className="oc-index">1</span>
+                        <span className="oc-count">/ {searchOCount}</span>
+                        <span className="main">occurences found</span>
+                    </div>
+                }
             </div>
         </div>
         <div className="replace-sec">
@@ -44,7 +61,7 @@ function App() {
                   className="ta" placeholder="paste your text here"></textarea>
       </div>
     </div>
-  );
+    );
 }
 
 export default App;
