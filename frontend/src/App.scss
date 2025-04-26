@@ -45,17 +45,24 @@ input { outline: none }
 .main-text-section {
   background-color: gray; height: 100%;
   padding: 30px 30px;
+  position: relative;
+  
   .ta {
     outline: none;
+    width: 100%;
   }
+
   .text-scene {
     background-color: wheat;
     pointer-events: none;
     position: absolute;
+    width: calc(100% - 60px); 
+
   }
 
   .ta-text-scene-common {
-    width: 100%; height: calc(100vh - 133px); border-radius: 5px; 
+    height: calc(100vh - 133px); 
+    border-radius: 5px; 
     padding: 20px;
   }
 
