@@ -57,8 +57,11 @@ function App() {
         </div>
       </div>
       <div className="main-text-section">
-        <textarea value={mainTextValue} onChange={event => setMainTextValue(event.target.value)}
-                  className="ta" placeholder="paste your text here"></textarea>
+        <div className="text-scene ta-text-scene-common">
+            <span>{mainTextValue}</span><span className='text-cursor'>|</span>
+        </div>
+        <textarea onChange={event => setMainTextValue(event.target.value)}
+            className="ta ta-text-scene-common" placeholder="paste your text here"></textarea>
       </div>
     </div>
     );
