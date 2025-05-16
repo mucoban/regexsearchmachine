@@ -45,9 +45,37 @@ input { outline: none }
 .main-text-section {
   background-color: gray; height: 100%;
   padding: 30px 30px;
+  position: relative;
+  
   .ta {
-    width: 100%; height: calc(100vh - 133px); border-radius: 5px; outline: none;
+    outline: none;
+    width: 100%;
+  }
+
+  .text-scene {
+    background-color: wheat;
+    pointer-events: none;
+    position: absolute;
+    width: calc(100% - 60px); 
+
+  }
+
+  .ta-text-scene-common {
+    height: calc(100vh - 133px); 
+    border-radius: 5px; 
     padding: 20px;
   }
+
+  .text-cursor {    
+    line-height: 0px;
+    font-size: 25px;
+    animation: cursorAni 1s both infinite step-end;
+  }
+
+}
+
+@keyframes cursorAni {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
 }
 
